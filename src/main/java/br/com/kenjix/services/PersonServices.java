@@ -1,8 +1,10 @@
 package br.com.kenjix.services;
 
+import br.com.kenjix.data.dto.v1.PersonDTO;
+import br.com.kenjix.data.dto.v2.PersonDTOV2;
 import br.com.kenjix.exception.ResourceNotFoundException;
+import br.com.kenjix.mapper.custom.PersonMapper;
 import br.com.kenjix.model.Person;
-import br.com.kenjix.data.dto.PersonDTO;
 import br.com.kenjix.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,9 @@ public class PersonServices {
     @Autowired
     PersonRepository personRepository;
 
+    @Autowired
+    PersonMapper personConverter;
+
     public List<PersonDTO> findAll() {
 
         logger.info("Finding all People!");
@@ -34,8 +39,7 @@ public class PersonServices {
     public PersonDTO findById(Long id) {
         logger.info("Finding one Person!");
 
-        var entity = personRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        var entity = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
         return parseObject(entity, PersonDTO.class);
     }
 
@@ -45,6 +49,14 @@ public class PersonServices {
         logger.info("Creating one Person!");
         var entity = parseObject(person, Person.class);
         return parseObject(personRepository.save(entity), PersonDTO.class);
+    }
+
+    public PersonDTOV2 createV2(PersonDTOV2 person) {
+
+        logger.info("Creating one Person!");
+        var entity = personConverter.convertDTOtoEntity(person);
+        return personConverter.convertEntityToDTO(personRepository.save(entity));
+
     }
 
     public PersonDTO update(PersonDTO person) {

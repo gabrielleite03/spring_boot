@@ -4,6 +4,7 @@ package br.com.kenjix.unitetests.mapper.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.kenjix.data.dto.v1.PersonDTO;
 import br.com.kenjix.model.Person;
 
 public class MockPerson {
@@ -13,7 +14,7 @@ public class MockPerson {
         return mockEntity(0);
     }
 
-    public br.com.kenjix.data.dto.PersonDTO mockDTO() {
+    public PersonDTO mockDTO() {
         return mockDTO(0);
     }
 
@@ -25,8 +26,8 @@ public class MockPerson {
         return persons;
     }
 
-    public List<br.com.kenjix.data.dto.PersonDTO> mockDTOList() {
-        List<br.com.kenjix.data.dto.PersonDTO> persons = new ArrayList<>();
+    public List<PersonDTO> mockDTOList() {
+        List<PersonDTO> persons = new ArrayList<>();
         for (int i = 0; i < 14; i++) {
             persons.add(mockDTO(i));
         }
@@ -43,8 +44,8 @@ public class MockPerson {
         return person;
     }
 
-    public br.com.kenjix.data.dto.PersonDTO mockDTO(Integer number) {
-        br.com.kenjix.data.dto.PersonDTO person = new br.com.kenjix.data.dto.PersonDTO();
+    public PersonDTO mockDTO(Integer number) {
+        PersonDTO person = new PersonDTO();
         person.setAddress("Address Test" + number);
         person.setFirstName("First Name Test" + number);
         person.setGender(((number % 2)==0) ? "Male" : "Female");

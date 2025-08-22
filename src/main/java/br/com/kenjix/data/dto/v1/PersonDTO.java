@@ -1,4 +1,4 @@
-package br.com.kenjix.data.dto;
+package br.com.kenjix.data.dto.v1;
 
 import java.io.Serial;
 import java.io.Serializable;
