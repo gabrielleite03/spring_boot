@@ -3,6 +3,7 @@ package br.com.kenjix.controllers;
 import br.com.kenjix.exception.UnsupportedMathOperationException;
 import br.com.kenjix.math.SimpleMath;
 import br.com.kenjix.request.converter.NumberConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/math")
 public class MathController {
 
-    private final SimpleMath math = new SimpleMath();
+    @Autowired
+    SimpleMath math;
 
     // http://localhost:8080/math/sum/3/5
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
