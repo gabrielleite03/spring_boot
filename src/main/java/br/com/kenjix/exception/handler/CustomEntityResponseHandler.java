@@ -1,7 +1,7 @@
 package br.com.kenjix.exception.handler;
 
 import br.com.kenjix.exception.ExceptionResponse;
-import br.com.kenjix.exception.UnsupportedMathOperationException;
+import br.com.kenjix.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,11 +23,11 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
     }
 
-    @ExceptionHandler(UnsupportedMathOperationException.class)
-    public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception ex, WebRequest request) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse> handleNotFoundExceptionExceptions(Exception ex, WebRequest request) {
         ExceptionResponse response = new ExceptionResponse(
                 new Date(), ex.getMessage(), request.getDescription(true));
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
     }
 }
