@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.Objects;
 
 // @JsonPropertyOrder({"id", "address", "first_name", "last_name", "gender"})
-@JsonFilter("PersonFilter")
+// @JsonFilter("PersonFilter")
 public class PersonDTO implements Serializable {
 
     @Serial
