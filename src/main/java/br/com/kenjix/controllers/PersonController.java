@@ -1,6 +1,6 @@
 package br.com.kenjix.controllers;
 
-import br.com.kenjix.data.dto.v1.PersonDTO;
+import br.com.kenjix.data.dto.PersonDTO;
 import br.com.kenjix.data.dto.v2.PersonDTOV2;
 import br.com.kenjix.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 public class PersonController {
 
     // Necessario para injetar a instancia do serviço

@@ -1,6 +1,6 @@
 package br.com.kenjix.services;
 
-import br.com.kenjix.data.dto.v1.PersonDTO;
+import br.com.kenjix.data.dto.PersonDTO;
 import br.com.kenjix.data.dto.v2.PersonDTOV2;
 import br.com.kenjix.exception.ResourceNotFoundException;
 import br.com.kenjix.mapper.custom.PersonMapper;
