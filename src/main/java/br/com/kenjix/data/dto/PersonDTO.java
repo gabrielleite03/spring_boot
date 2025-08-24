@@ -6,11 +6,9 @@ package br.com.kenjix.data.dto;
 //import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import br.com.kenjix.serializer.GenderSerializer;
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.xml.crypto.Data;
 import java.io.DataInput;
@@ -19,9 +17,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-// @JsonPropertyOrder({"id", "address", "first_name", "last_name", "gender"})
+ @JsonPropertyOrder({"id", "address", "first_name", "last_name", "gender"})
 // @JsonFilter("PersonFilter")
-public class PersonDTO implements Serializable {
+public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;

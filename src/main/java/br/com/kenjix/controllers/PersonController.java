@@ -32,8 +32,8 @@ public class PersonController {
             MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_YAML_VALUE})
-    public PersonDTO findById(@PathVariable("id") String id) {
-        return personService.findById(Long.valueOf(id));
+    public PersonDTO findById(@PathVariable("id") Long id) {
+        return personService.findById((id));
     }
 
     @PostMapping(consumes = {
