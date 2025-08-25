@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// @CrossOrigin(origins = "http://localhost:8080") CORS a nivel de controle
 @RestController
 @RequestMapping("/api/person/v1")
 @Tag(name = "People", description = "Endpoints for Managing People")
@@ -31,6 +32,7 @@ public class PersonController implements PersonControllerDocs {
         return personService.findAll();
     }
 
+    //@CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/{id}",  produces = {
             MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE,
@@ -39,6 +41,7 @@ public class PersonController implements PersonControllerDocs {
         return personService.findById((id));
     }
 
+    //@CrossOrigin(origins = {"http://localhost:8080", ""})
     @PostMapping(consumes = {
             MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE,
