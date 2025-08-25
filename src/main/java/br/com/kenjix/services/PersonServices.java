@@ -3,6 +3,7 @@ package br.com.kenjix.services;
 import br.com.kenjix.controllers.PersonController;
 import br.com.kenjix.data.dto.PersonDTO;
 import br.com.kenjix.data.dto.v2.PersonDTOV2;
+import br.com.kenjix.exception.RequiredObjectIsNullException;
 import br.com.kenjix.exception.ResourceNotFoundException;
 import br.com.kenjix.mapper.custom.PersonMapper;
 import br.com.kenjix.model.Person;
@@ -53,6 +54,7 @@ public class PersonServices {
 
     public PersonDTO create(PersonDTO person) {
 
+        if (person == null) throw new RequiredObjectIsNullException();
         logger.info("Creating one Person!");
         var entity = parseObject(person, Person.class);
         var dto = parseObject(personRepository.save(entity), PersonDTO.class);

@@ -4,7 +4,7 @@ package br.com.kenjix.unitetests.mapper.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.kenjix.data.dto.v1.PersonDTO;
+import br.com.kenjix.data.dto.PersonDTO;
 import br.com.kenjix.model.Person;
 
 public class MockPerson {
