@@ -1,6 +1,7 @@
 package br.com.kenjix.exception.handler;
 
 import br.com.kenjix.exception.ExceptionResponse;
+import br.com.kenjix.exception.RequiredObjectIsNullException;
 import br.com.kenjix.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +25,13 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public final ResponseEntity<ExceptionResponse> handleNotFoundExceptionExceptions(Exception ex, WebRequest request) {
+    public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception ex, WebRequest request) {
         ExceptionResponse response = new ExceptionResponse(
                 new Date(), ex.getMessage(), request.getDescription(true));
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
     }
-    @ExceptionHandler(ResourceNotFoundException.class)
+    @ExceptionHandler(RequiredObjectIsNullException.class)
     public final ResponseEntity<ExceptionResponse> handleBadRequestExceptionExceptions(Exception ex, WebRequest request) {
         ExceptionResponse response = new ExceptionResponse(
                 new Date(), ex.getMessage(), request.getDescription(true));

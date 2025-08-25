@@ -1,8 +1,10 @@
 package br.com.kenjix.controllers;
 
+import br.com.kenjix.controllers.docs.PersonControllerDocs;
 import br.com.kenjix.data.dto.PersonDTO;
 import br.com.kenjix.data.dto.v2.PersonDTOV2;
 import br.com.kenjix.services.PersonServices;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/person/v1")
-public class PersonController {
+@Tag(name = "People", description = "Endpoints for Managing People")
+public class PersonController implements PersonControllerDocs {
 
     // Necessario para injetar a instancia do serviço
     @Autowired
