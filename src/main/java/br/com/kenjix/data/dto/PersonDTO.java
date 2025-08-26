@@ -9,6 +9,7 @@ import br.com.kenjix.serializer.GenderSerializer;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 import javax.xml.crypto.Data;
 import java.io.DataInput;
@@ -17,6 +18,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+@Relation(collectionRelation = "people")
  @JsonPropertyOrder({"id", "address", "first_name", "last_name", "gender"})
 // @JsonFilter("PersonFilter")
 public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
@@ -44,7 +46,11 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
     @JsonSerialize(using = GenderSerializer.class)
     private String gender;
 
+
+
     private String sensitiveData;
+
+     private Boolean enabled;
 
     public PersonDTO() {}
 
@@ -112,15 +118,23 @@ public class PersonDTO extends RepresentationModel<PersonDTO> implements Seriali
         this.sensitiveData = sensitiveData;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        PersonDTO personDTO = (PersonDTO) o;
-        return Objects.equals(getId(), personDTO.getId()) && Objects.equals(getFirstName(), personDTO.getFirstName()) && Objects.equals(getLastName(), personDTO.getLastName()) && Objects.equals(getPhoneNumber(), personDTO.getPhoneNumber()) && Objects.equals(getBirthDay(), personDTO.getBirthDay()) && Objects.equals(getAddress(), personDTO.getAddress()) && Objects.equals(getGender(), personDTO.getGender()) && Objects.equals(getSensitiveData(), personDTO.getSensitiveData());
-    }
+     public Boolean getEnabled() {
+         return enabled;
+     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getPhoneNumber(), getBirthDay(), getAddress(), getGender(), getSensitiveData());
-    }
-}
+     public void setEnabled(Boolean enabled) {
+         this.enabled = enabled;
+     }
+
+     @Override
+     public boolean equals(Object o) {
+         if (!(o instanceof PersonDTO personDTO)) return false;
+         if (!super.equals(o)) return false;
+         return Objects.equals(id, personDTO.id) && Objects.equals(firstName, personDTO.firstName) && Objects.equals(lastName, personDTO.lastName) && Objects.equals(phoneNumber, personDTO.phoneNumber) && Objects.equals(birthDay, personDTO.birthDay) && Objects.equals(address, personDTO.address) && Objects.equals(gender, personDTO.gender) && Objects.equals(enabled, personDTO.enabled) && Objects.equals(sensitiveData, personDTO.sensitiveData);
+     }
+
+     @Override
+     public int hashCode() {
+         return Objects.hash(super.hashCode(), id, firstName, lastName, phoneNumber, birthDay, address, gender, enabled, sensitiveData);
+     }
+ }
