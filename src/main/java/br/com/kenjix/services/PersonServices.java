@@ -194,8 +194,7 @@ public class PersonServices {
                                         pageable.getPageSize(),
                                         String.valueOf(pageable.getSort())))
                 .withSelfRel();
-        return assembler.toModel(peopleWithLinks,
-                findAllLink);
+        return assembler.toModel(peopleWithLinks, findAllLink);
     }
 
     private void addHateoasLinks(PersonDTO dto) {

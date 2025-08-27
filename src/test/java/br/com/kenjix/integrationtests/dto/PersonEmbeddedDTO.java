@@ -1,12 +1,13 @@
-package br.com.kenjix.integrationtests.dto.wrappers.json;
+package br.com.kenjix.integrationtests.dto;
 
-import br.com.kenjix.integrationtests.dto.PersonDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
+@XmlRootElement
 public class PersonEmbeddedDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

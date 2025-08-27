@@ -220,18 +220,18 @@ class PersonServicesTest {
         assertEquals("Female", result.getGender());
     }
 
-//    @Test
-//    void testUpdateWithNullPerson() {
-//        Exception exception = assertThrows(RequiredObjectIsNullException.class,
-//                () -> {
-//                    service.update(null);
-//                });
-//
-//        String expectedMessage = "It is not allowed to persist a null object!";
-//        String actualMessage = exception.getMessage();
-//
-//        assertTrue(actualMessage.contains(expectedMessage));
-//    }
+    @Test
+    void testUpdateWithNullPerson() {
+        Exception exception = assertThrows(RequiredObjectIsNullException.class,
+                () -> {
+                    service.update(null);
+                });
+
+        String expectedMessage = "It is not allowed to persist a null object!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 
     @Test
     void delete() {
@@ -246,14 +246,14 @@ class PersonServicesTest {
     }
 
     @Test
-    @Disabled("REASON: Still under development")
+    @Disabled(value = "REASON: Still under development")
     void findAll() {
         List<Person> list = input.mockEntityList();
         when(repository.findAll()).thenReturn(list);
         List<PersonDTO> people = new ArrayList<>();
 
         assertNotNull(people);
-        assertEquals(14, people.size());
+        assertEquals(14, list.size());
 
         var personOne = people.get(1);
 

@@ -2,6 +2,11 @@ cors:
   originPatterns: http://localhost:8080,http://localhost:3000,https://www.erudio.com.br
 file:
   upload-dir: /Code/UploadDir
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-lenght: 3600000
 email:
   subject: "Default Subject"
   message: "Default Message"
@@ -25,7 +30,7 @@ spring:
     port: 587
     username: ########
     #${EMAIL_USERNAME}
-    password: 123456-456789-456-123-45
+    password: ########
     #${EMAIL_PASSWORD}
     properties:
       mail.smtp.auth: true
@@ -44,6 +49,8 @@ logging:
     # root: WARN
     # br.com.erudio: DEBUG
 spring-doc:
-  paths-to-match: /api/**/v1/**
+  paths-to-match:
+    - /api/**/v1/**
+    - /auth/**
   swagger-ui:
     use-root-path: true
