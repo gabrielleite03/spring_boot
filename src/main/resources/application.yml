@@ -2,12 +2,15 @@ cors:
   originPatterns: http://localhost:8080,http://localhost:3000,https://www.erudio.com.br
 file:
   upload-dir: /Code/UploadDir
+email:
+  subject: "Default Subject"
+  message: "Default Message"
 spring:
   application:
     name: rest-with-spring-boot-and-java-kenjix
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://KOTO-SERVER01:3306/rest_with_spring_boot_kenjix?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/rest_with_spring_boot_kenjix?useTimezone=true&serverTimezone=UTC
     username: root
     password: 123456
   jpa:
@@ -15,8 +18,19 @@ spring:
       ddl-auto: none
     properties:
       hibernate:
-    show-sql: true
+    show-sql: false
     open-in-view: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: gabrielleite03@gmail.com
+    #${EMAIL_USERNAME}
+    password: loqneadfhxhgrpyx
+    #${EMAIL_PASSWORD}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enabled: true
+      mail.smtp.starttls.required: true
   servlet:
     multipart:
       enabled: true
@@ -25,8 +39,10 @@ spring:
       max-request-size: 215 MB
 logging:
   level:
-    #root: WARN
-    br.com.kenjix: DEBUG
+    root: INFO
+    # net.sf.jasperreports.engine.*: TRACE
+    # root: WARN
+    # br.com.erudio: DEBUG
 spring-doc:
   paths-to-match: /api/**/v1/**
   swagger-ui:

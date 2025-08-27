@@ -7,7 +7,7 @@
         <relativePath/>
         <!--  lookup parent from repository  -->
     </parent>
-    <groupId>br.com.erudio</groupId>
+    <groupId>br.com.kenjix</groupId>
     <artifactId>rest-with-spring-boot-and-java-kenjix</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>rest-with-spring-boot-and-java-kenjix</name>
@@ -23,6 +23,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
