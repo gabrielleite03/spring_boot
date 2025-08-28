@@ -17,9 +17,11 @@ spring:
     name: rest-with-spring-boot-and-java-kenjix
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/rest_with_spring_boot_kenjix?useTimezone=true&serverTimezone=UTC
+    #url: jdbc:mysql://localhost:3306/rest_with_spring_boot_kenjix?useTimezone=true&serverTimezone=UTC
+    #url: jdbc:mysql://kenjix-db-server.ca3mcqac2tzz.us-east-1.rds.amazonaws.com/rest_with_spring_boot_kenjix?useTimezone=true&serverTimezone=UTC
+    url: ${JDBC_URL}
     username: root
-    password: 123456
+    password: admin123
   jpa:
     hibernate:
       ddl-auto: none
