@@ -3,12 +3,12 @@ name: Continuos integrations and Delivery with GitHub Actions
 on:
   push:
     branches:
-      - "main"
+      - main
 
 jobs:
   build-deploy:
-    name: build and deploy spring-api
-    runs-on: ubuntu-20.04
+    name: build and deploy spring_boot
+    runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v3
