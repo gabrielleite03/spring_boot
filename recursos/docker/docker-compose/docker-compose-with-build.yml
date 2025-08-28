@@ -15,8 +15,6 @@ services:
       - "3308:3306"
     expose:
       - 3306
-    volumes:
-      - mysql_data:/var/lib/mysql
     networks:
       - kenjix-network
   spring_boot:
@@ -47,7 +45,6 @@ services:
     networks:
       - kenjix-network
 volumes:
-  mysql_data:
   portainer_data:
 networks:
   kenjix-network:
