@@ -34,6 +34,18 @@ services:
       - db
     networks:
       - kenjix-network
+  portainer:
+    image: portainerci/portainer-ce:pr-1094
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - kenjix-network
+volumes:
+  portainer_data:
 networks:
   kenjix-network:
       driver: bridge
