@@ -1,1 +1,2 @@
 # spring_boot
+[![MASTER | CI/CD with GitHub Actions](https://github.com/gabrielleite03/spring_boot/actions/workflows/ci-cd-master.yml/badge.svg?branch=main)](https://github.com/gabrielleite03/spring_boot/actions/workflows/ci-cd-master.yml)
