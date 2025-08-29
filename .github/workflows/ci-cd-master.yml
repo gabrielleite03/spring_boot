@@ -3,10 +3,10 @@ name: Continuos integrations and Delivery with GitHub Actions
 on:
   push:
     branches:
-      - main
+      - release
 
 jobs:
-  build-deploy:
+  build:
     name: build and deploy spring_boot
     runs-on: ubuntu-latest
     steps:
@@ -29,6 +29,6 @@ jobs:
         run: docker compose build
       - name: Push to Docker Container Registry
         run: |
-            docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.DOCKER_USERNAME }}/spring_boot:rc-${{ github.run_number }}
             docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest
-            docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:rc-${{ github.run_number }}
+            docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest tc-${{ secrets.DOCKER_USERNAME }}/spring_boot:${{ github.run_number }}            
+            docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:${{ github.run_number }}
