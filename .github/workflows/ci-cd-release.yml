@@ -7,11 +7,13 @@ on:
 
 jobs:
   build:
-    name: Build Application ${GITHUB_REPOSITORY##*/}
+    name: Build Application
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # precisa para poder criar tags
       - name: setup jdk 21
         uses: actions/setup-java@v3
         with:
@@ -34,3 +36,7 @@ jobs:
             docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest
             docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.DOCKER_USERNAME }}/spring_boot:rc-${{ github.run_number }}            
             docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:rc-${{ github.run_number }}
+      - name: Create and Push Tag
+        run: |
+            git tag rc-${{ github.event.inputs.version }}
+            git push origin ${{ github.event.inputs.version }}
