@@ -40,8 +40,8 @@ jobs:
         run: |                     
           docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:latest
           docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:${{ github.run_number }}
-          docker push ${{ secrets.GCP_REGISTRY_INFO }}:latest
-          docker push ${{ secrets.GCP_REGISTRY_INFO }}:${{ github.run_number }}
+          docker push ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:latest
+          docker push ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:${{ github.run_number }}
 
       - name: Push to Docker Container Registry
         run: |
