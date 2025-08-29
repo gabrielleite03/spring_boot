@@ -36,7 +36,11 @@ jobs:
             docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest
             docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.DOCKER_USERNAME }}/spring_boot:rc-${{ github.run_number }}            
             docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:rc-${{ github.run_number }}
+      - name: Configure Git
+        run: |
+            git config user.name "Gabriel Leite"
+            git config user.email "gabrielleite03@gmail.com"
       - name: Create and Push Tag
         run: |
-            git tag rc-${{ github.event.inputs.version }}
-            git push origin ${{ github.event.inputs.version }}
+            git tag rc-${{ github.run_number }}
+            git push origin ${{ github.run_number }}
