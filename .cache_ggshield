@@ -1,1 +1,1 @@
-{"last_found_secrets": [{"name": "Bearer Token - commit://staged/src/main/java/br/com/kenjix/security/jwt/JwtTokenProvider.java", "match": "df04b6f1e72effe23492c4f12a6f5921b23a4c8792f2b1ba544e8d985bbd0f4f"}]}
+{"last_found_secrets": [{"match": "f307eadf2aed4d593dde42e2823137053f9051d2212cc602a8bf27e86453c400", "name": "Generic Password - commit://staged/recursos/docker/docker-compose/docker-compose.yml"}]}

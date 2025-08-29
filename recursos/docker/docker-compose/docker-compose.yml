@@ -27,11 +27,12 @@ services:
     environment:
       TZ: America/Sao_Paulo
       #SPRING.DATASOURCE.URL: jdbc:mysql://db:3306/rest_with_spring_boot_kenjix?useTimezone=true&serverTimezone=UTC
-      SPRING.DATASOURCE.URL: ${JDBC_URL}
+      #SPRING.DATASOURCE.URL: ${JDBC_URL}
+      SPRING.DATASOURCE.URL: jdbc:mysql://34.70.100.87/rest_with_spring_boot_kenjix?useTimezone=true&serverTimezone=UTC
       SPRING.DATASOURCE.USERNAME: root
-      SPRING.DATASOURCE.PASSWORD: admin123
+      SPRING.DATASOURCE.PASSWORD: ${JDBC_USER_PASS}
     ports:
-      - 80:80
+      - 8080:8080
     command: mvn spring-boot:run
   #  depends_on:
   #    - db
