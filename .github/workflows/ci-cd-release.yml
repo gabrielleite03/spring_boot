@@ -9,7 +9,6 @@ jobs:
   build:
     name: build and deploy spring_boot
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
       - name: checkout code
         uses: actions/checkout@v3
