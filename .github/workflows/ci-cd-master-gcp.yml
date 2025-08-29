@@ -36,8 +36,22 @@ jobs:
         working-directory: ./recursos/docker/docker-compose
         run: docker compose build
 
-      - name: Tag and Push to Docker Image to Amazon Image Registry - ECR
+      - name: Tag and Push to Docker Image to Google Cloud Artifact Registry -GCP
         run: |                     
+          docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:${{ github.run_number }}
+          docker push ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:latest
+          docker push ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:${{ github.run_number }}
+      - name: Deploy to Google Cloud Run - GCP
+        run: |
+          google run deploy spring-boot \
+            --image ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:latest \
+            --region us-east1 \
+            --platform managed \
+            --allow-unauthenticated
+            
+          
+          
           docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:latest
           docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:${{ github.run_number }}
           docker push ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:latest
