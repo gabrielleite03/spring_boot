@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-deploy:
-    name: build and deploy spring_boot
+    name: Running tests
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
