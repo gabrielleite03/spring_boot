@@ -42,12 +42,12 @@ jobs:
         run: |
           
           docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.IMAGE_REPO_URL }}:latest            
-          docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.IMAGE_REPO_URL }}/spring_boot:${{ github.run_number }}            
+          docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.IMAGE_REPO_URL }}:${{ github.run_number }}            
           
-          docker push ${{ secrets.DOCKER_USERNAME }}:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}:${{ github.run_number }}
+          docker push ${{ secrets.IMAGE_REPO_URL }}:latest
+          docker push ${{ secrets.IMAGE_REPO_URL }}:${{ github.run_number }}
       - name: Push to Docker Container Registry
         run: |
-            docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest
-            docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.DOCKER_USERNAME }}/spring_boot:${{ github.run_number }}            
-            docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:${{ github.run_number }}- name: Push to Docker Container Registry
+          docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.DOCKER_USERNAME }}/spring_boot:${{ github.run_number }}            
+          docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:${{ github.run_number }}
