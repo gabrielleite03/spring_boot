@@ -1,17 +1,19 @@
-name: Continuos integrations and Delivery with GitHub Actions
+name: RELEASE | CI/CD with GitHub Actions
 
 on:
   push:
     branches:
-      - main
+      - release
 
 jobs:
-  build-deploy:
-    name: build and deploy spring_boot
+  build:
+    name: Build Application
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # precisa para poder criar tags
       - name: setup jdk 21
         uses: actions/setup-java@v3
         with:
@@ -27,8 +29,10 @@ jobs:
       - name: Docker Compose Building
         working-directory: ./recursos/docker/docker-compose
         run: docker compose build
+      - name: Printing image name and version
+        run: echo "::notice::${{ secrets.DOCKER_USERNAME }}/spring_boot:rc-${{ github.run_number }}"
       - name: Push to Docker Container Registry
         run: |
-            docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.DOCKER_USERNAME }}/spring_boot:${{ github.run_number }}
             docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest
-            docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:${{ github.run_number }}
+            docker tag ${{ secrets.DOCKER_USERNAME }}/spring_boot:latest ${{ secrets.DOCKER_USERNAME }}/spring_boot:rc-${{ github.run_number }}            
+            docker push ${{ secrets.DOCKER_USERNAME }}/spring_boot:rc-${{ github.run_number }}
