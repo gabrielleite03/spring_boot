@@ -3,7 +3,7 @@ name: MASTER | CI/CD with GitHub Actions and Deploy on GCP
 on:
   push:
     branches:
-      - main
+      - gcp
 
 jobs:
   build:
