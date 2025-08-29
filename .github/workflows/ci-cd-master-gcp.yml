@@ -44,7 +44,7 @@ jobs:
           docker push ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:${{ github.run_number }}
       - name: Deploy to Google Cloud Run - GCP
         run: |
-          google run deploy spring-boot \
+          gcloud run deploy spring-boot \
             --image ${{ secrets.GCP_REGISTRY_INFO }}/spring_boot:latest \
             --region us-east1 \
             --platform managed \
