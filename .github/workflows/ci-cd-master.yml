@@ -1,9 +1,9 @@
-name: Continuos integrations and Delivery with GitHub Actions
+name: MASTER | CI/CD with GitHub Actions
 
 on:
   push:
     branches:
-      - release
+      - main
 
 jobs:
   build:

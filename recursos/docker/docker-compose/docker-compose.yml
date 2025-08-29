@@ -1,24 +1,24 @@
 version: '3.4'
 
 services:
-  db:
-    image: mysql:9.1.0
-    #command: mysqld --default_authentication_plugin=mysql_native_password
-    restart: on-failure
-    environment:
-      TZ: America/Sao_Paulo
-      MYSQL_ROOT_PASSWORD: admin123
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: admin123
-      MYSQL_DATABASE: rest_with_spring_boot_kenjix
-    ports:
-      - "3308:3306"
-    expose:
-      - 3306
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - kenjix-network
+  #db:
+  #  image: mysql:9.1.0
+  #  #command: mysqld --default_authentication_plugin=mysql_native_password
+  #  restart: on-failure
+  #  environment:
+  #    TZ: America/Sao_Paulo
+  #    MYSQL_ROOT_PASSWORD: admin123
+  #    MYSQL_USER: docker
+  #    MYSQL_PASSWORD: admin123
+  #    MYSQL_DATABASE: rest_with_spring_boot_kenjix
+  #  ports:
+  #    - "3308:3306"
+  #  expose:
+  #    - 3306
+  #  volumes:
+  #    - mysql_data:/var/lib/mysql
+  #  networks:
+  #    - kenjix-network
   spring_boot:
     image: gabrielleite03/spring_boot
     restart: on-failure
@@ -32,20 +32,20 @@ services:
     ports:
       - 80:80
     command: mvn spring-boot:run
-    depends_on:
-      - db
+  #  depends_on:
+  #    - db
     networks:
       - kenjix-network
-  portainer:
-    image: portainerci/portainer-ce:pr-1094
-    restart: always
-    ports:
-      - 9000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    networks:
-      - kenjix-network
+  #portainer:
+  #  image: portainerci/portainer-ce:pr-1094
+  #  restart: always
+  #  ports:
+  #    - 9000:9000
+  #  volumes:
+  #    - /var/run/docker.sock:/var/run/docker.sock
+  #    - portainer_data:/data
+  #  networks:
+  #    - kenjix-network
 volumes:
   mysql_data:
   portainer_data:

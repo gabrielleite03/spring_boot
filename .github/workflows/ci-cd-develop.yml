@@ -1,4 +1,4 @@
-name: Continuos integrations and Delivery with GitHub Actions
+name: DEVELOP | CI/CD with GitHub Actions
 
 on:
   push:
